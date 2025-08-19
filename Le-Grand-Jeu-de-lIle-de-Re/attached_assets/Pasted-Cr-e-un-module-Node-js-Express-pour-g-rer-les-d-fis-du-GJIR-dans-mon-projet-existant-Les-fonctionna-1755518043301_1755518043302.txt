@@ -1,0 +1,54 @@
+Crée un module Node.js/Express pour gérer les défis du GJIR dans mon projet existant.
+Les fonctionnalités doivent inclure :
+
+1. Gestion des défis par utilisateur :
+
+Chaque utilisateur doit avoir 2 défis faciles, 2 défis intermédiaires et 2 défis difficiles.
+
+Les défis doivent être attribués aléatoirement à chaque utilisateur sans intervention des administrateurs.
+
+Certains défis peuvent faire référence à une autre personne ; la cible doit être un autre utilisateur existant.
+
+2. Défi d’équipe :
+
+Les équipes sont de 2 à 3 participants, mais les joueurs ne connaissent pas les autres membres.
+
+Chaque équipe a un défi commun qui rapporte 3 points.
+
+Une mission d’identification permet aux membres de s’identifier sans rapporter de points.
+
+3. Gestion de la banque de défis (pour les admins) :
+
+Les administrateurs peuvent ajouter des défis à la banque via un endpoint.
+
+Chaque défi doit avoir : un titre, une description, un niveau de difficulté (easy, medium, hard) et une option pour cibler un autre utilisateur.
+
+Endpoint : POST /api/challenges → ajoute un défi à la banque.
+
+4. Endpoints principaux :
+
+GET /api/assignments/:userId → renvoie tous les défis attribués à un utilisateur avec l’état (non commencé, en cours, terminé).
+
+POST /api/assignments/:userId/:challengeId/complete → marque un défi comme terminé et ajoute les points correspondants.
+
+GET /api/team/:userId → renvoie les informations sur l’équipe d’un utilisateur, sans révéler les autres membres mais avec le défi d’équipe.
+
+POST /api/events → permet aux admins de créer un événement avec nom, consigne et points attribuables manuellement.
+
+POST /api/challenges → permet aux admins d’ajouter un nouveau défi à la banque.
+
+5. Base de données :
+
+Tables nécessaires : users, challenges, assignments, teams, events.
+
+Les tables doivent inclure : identifiant des participants, état des défis, points et références aux défis et équipes.
+
+6. Qualité du code :
+
+Compatible avec l’architecture Express existante.
+
+Utiliser ES Modules si le projet est déjà en ESM.
+
+Ajouter des commentaires explicatifs pour chaque endpoint et fonction clé.
+
+Gérer les erreurs : utilisateur non trouvé, défi inexistant, équipe inexistante, etc.
